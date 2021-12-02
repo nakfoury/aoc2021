@@ -1,19 +1,19 @@
 use std::{
     fs::File,
-    io::{self, BufRead, Lines, Write},
+    io::{self, Write},
     path::Path,
 };
 
 use aoc2021::*;
 
-extern crate reqwest;
-
 fn main() {
     println!("Day1 Part1: {:?}", day1::part_1(get_input(1)));
     println!("Day1 Part2: {:?}", day1::part_2(get_input(1)));
+    println!("Day1 Part1: {:?}", day2::part_1(get_input(2)));
+    println!("Day1 Part2: {:?}", day2::part_2(get_input(2)));
 }
 
-fn get_input(day: usize) -> io::BufReader<File> {
+fn get_input(day: i32) -> io::BufReader<File> {
     let p = format!("input/day{}.txt", day);
     let path = Path::new(&p);
 
@@ -25,7 +25,7 @@ fn get_input(day: usize) -> io::BufReader<File> {
     io::BufReader::new(file)
 }
 
-fn download_input(day: usize) -> Result<File, reqwest::Error> {
+fn download_input(day: i32) -> Result<File, reqwest::Error> {
     println!("Making web request...");
     let client = reqwest::blocking::Client::new();
 

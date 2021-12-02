@@ -1,9 +1,21 @@
-use std::{
-    fs,
-    io::{BufRead, BufReader, Read},
-};
+use std::io::{BufRead, BufReader, Read};
 
-use test::Bencher;
+#[derive(Clone, Copy)]
+struct Window {
+    next: usize,
+    numbers: [u32; 3],
+}
+
+impl Window {
+    fn sum(self) -> u32 {
+        self.numbers[0] + self.numbers[1] + self.numbers[2]
+    }
+
+    fn rotate(&mut self, num: u32) {
+        self.numbers[self.next % 3] = num;
+        self.next += 1;
+    }
+}
 
 pub fn part_1<R: Read>(inp: BufReader<R>) -> u32 {
     let mut result = 0;
@@ -61,33 +73,31 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> u32 {
     result
 }
 
-#[derive(Clone, Copy)]
-struct Window {
-    next: usize,
-    numbers: [u32; 3],
-}
+#[cfg(test)]
+mod unit_test {
+    use crate::day1::{part_1, part_2};
+    use std::io::BufReader;
+    use test::Bencher;
 
-impl Window {
-    fn sum(self) -> u32 {
-        self.numbers[0] + self.numbers[1] + self.numbers[2]
+    const INP: &[u8] = include_str!("../test/day1.txt").as_bytes();
+
+    #[test]
+    fn test_part_1() {
+        assert_eq!(part_1(BufReader::new(INP)), 7);
     }
 
-    fn rotate(&mut self, num: u32) {
-        self.numbers[self.next % 3] = num;
-        self.next += 1;
+    #[test]
+    fn test_part_2() {
+        assert_eq!(part_2(BufReader::new(INP)), 5);
     }
-}
 
-#[bench]
-fn bench_part1(b: &mut Bencher) {
-    let input = include_str!("../input/day1.txt");
-    let input = input.as_bytes();
-    b.iter(|| part_1(BufReader::new(input)))
-}
+    #[bench]
+    fn bench_part1(b: &mut Bencher) {
+        b.iter(|| part_1(BufReader::new(INP)))
+    }
 
-#[bench]
-fn bench_part2(b: &mut Bencher) {
-    let input = include_str!("../input/day1.txt");
-    let input = input.as_bytes();
-    b.iter(|| part_2(BufReader::new(input)))
+    #[bench]
+    fn bench_part2(b: &mut Bencher) {
+        b.iter(|| part_2(BufReader::new(INP)))
+    }
 }
