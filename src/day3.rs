@@ -37,25 +37,22 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 
     for i in 0..n_cols {
         let oxy_len = oxy_values.len();
-        if oxy_len == 1 {
-            break;
-        }
-        if count_1s(&oxy_values, i) * 2 >= oxy_len {
-            oxy_values = partition_readings(&oxy_values, i, '1')
-        } else {
-            oxy_values = partition_readings(&oxy_values, i, '0')
-        }
-    }
-
-    for i in 0..n_cols {
         let co2_len = co2_values.len();
-        if co2_len == 1 {
-            break;
+
+        if oxy_len != 1 {
+            if count_1s(&oxy_values, i) * 2 >= oxy_len {
+                oxy_values = filter_by_char_in_pos(&oxy_values, i, '1')
+            } else {
+                oxy_values = filter_by_char_in_pos(&oxy_values, i, '0')
+            }
         }
-        if count_1s(&co2_values, i) * 2 < co2_len {
-            co2_values = partition_readings(&co2_values, i, '1')
-        } else {
-            co2_values = partition_readings(&co2_values, i, '0')
+
+        if co2_len != 1 {
+            if count_1s(&co2_values, i) * 2 < co2_len {
+                co2_values = filter_by_char_in_pos(&co2_values, i, '1')
+            } else {
+                co2_values = filter_by_char_in_pos(&co2_values, i, '0')
+            }
         }
     }
 
@@ -68,7 +65,7 @@ fn count_1s(v: &Vec<String>, pos: usize) -> usize {
         .count()
 }
 
-fn partition_readings(v: &Vec<String>, pos: usize, c: char) -> Vec<String> {
+fn filter_by_char_in_pos(v: &Vec<String>, pos: usize, c: char) -> Vec<String> {
     let (part, _) = v
         .clone()
         .into_iter()
