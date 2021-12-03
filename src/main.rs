@@ -9,8 +9,10 @@ use aoc2021::*;
 fn main() {
     println!("Day1 Part1: {:?}", day1::part_1(get_input(1)));
     println!("Day1 Part2: {:?}", day1::part_2(get_input(1)));
-    println!("Day1 Part1: {:?}", day2::part_1(get_input(2)));
-    println!("Day1 Part2: {:?}", day2::part_2(get_input(2)));
+    println!("Day2 Part1: {:?}", day2::part_1(get_input(2)));
+    println!("Day2 Part2: {:?}", day2::part_2(get_input(2)));
+    println!("Day3 Part1: {:?}", day3::part_1(get_input(3)));
+    println!("Day3 Part2: {:?}", day3::part_2(get_input(3)));
 }
 
 fn get_input(day: i32) -> io::BufReader<File> {
