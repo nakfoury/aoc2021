@@ -1,3 +1,5 @@
+/* --- Day 1: Sonar Sweep --- */
+
 use std::io::{BufRead, BufReader, Read};
 
 #[derive(Clone, Copy)]
