@@ -1,21 +1,10 @@
 /* --- Day 4: Giant Squid --- */
 
-use std::{
-    error::Error,
-    io::{BufRead, BufReader, Read},
-};
+use std::io::{BufRead, BufReader, Read};
 
 use itertools::Itertools;
 
 type Board = [Option<i32>; 25];
-
-fn score_board(b: &Board) -> i32 {
-    b.into_iter()
-        .filter_map(|x| *x)
-        .collect::<Vec<i32>>()
-        .iter()
-        .sum()
-}
 
 fn mark_number(b: &mut Board, num: i32) -> bool {
     match b.iter().position(|n| *n == Some(num)) {
@@ -49,6 +38,14 @@ fn is_win_by_col(b: &Board) -> bool {
     false
 }
 
+fn score_board(b: &Board) -> i32 {
+    b.into_iter()
+        .filter_map(|x| *x)
+        .collect::<Vec<i32>>()
+        .iter()
+        .sum()
+}
+
 pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
     let mut lines = inp.lines();
 
@@ -80,7 +77,6 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
         for mut board in &mut bingo_boards {
             if mark_number(&mut board, num) {
                 if is_win(&board) {
-                    println!("Winning number: {:?}", num);
                     return num * score_board(&board);
                 }
             }
@@ -91,7 +87,47 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
 }
 
 pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
-    0
+    let mut lines = inp.lines();
+
+    let bingo_numbers = lines
+        .next()
+        .unwrap()
+        .unwrap()
+        .split(",")
+        .map(|n| n.parse().unwrap())
+        .collect::<Vec<i32>>();
+
+    let mut bingo_boards: Vec<Board> = vec![];
+
+    for board_chunk in &lines.chunks(6) {
+        bingo_boards.push(
+            board_chunk
+                .map(|l| l.unwrap())
+                .collect::<Vec<String>>()
+                .join(" ")
+                .split_whitespace()
+                .map(|n| Some(n.parse().unwrap()))
+                .collect::<Vec<Option<i32>>>()
+                .try_into()
+                .unwrap(),
+        );
+    }
+
+    let mut score_moves_tuple_list: Vec<(usize, i32)> = vec![];
+
+    for mut board in bingo_boards {
+        for (i, num) in bingo_numbers.iter().enumerate() {
+            if mark_number(&mut board, *num) {
+                if is_win(&board) {
+                    score_moves_tuple_list.push((i, num * score_board(&board)));
+                    break;
+                }
+            }
+        }
+    }
+
+    score_moves_tuple_list.sort_by_key(|t| t.0);
+    score_moves_tuple_list.last().unwrap().1
 }
 
 #[cfg(test)]
@@ -109,7 +145,7 @@ mod unit_test {
 
     #[test]
     fn test_part_2() {
-        assert_eq!(part_2(BufReader::new(INP)), 230);
+        assert_eq!(part_2(BufReader::new(INP)), 1924);
     }
 
     #[test]
