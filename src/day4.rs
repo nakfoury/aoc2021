@@ -131,7 +131,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 }
 
 #[cfg(test)]
-mod unit_test {
+mod test {
     use crate::day4::{is_win_by_col, is_win_by_row, part_1, part_2, score_board};
     use std::io::BufReader;
     use test::Bencher;
@@ -157,27 +157,27 @@ mod unit_test {
             None,
             None,
             Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(2),
+            Some(3),
+            Some(4),
+            Some(5),
+            Some(6),
+            Some(7),
+            Some(8),
+            Some(9),
+            Some(10),
+            Some(11),
+            Some(12),
+            Some(13),
+            Some(14),
+            Some(15),
+            Some(16),
+            Some(17),
+            Some(18),
+            Some(19),
+            Some(20),
         ];
-        assert_eq!(score_board(&inp), 20);
+        assert_eq!(score_board(&inp), 210);
     }
 
     #[test]
@@ -185,29 +185,29 @@ mod unit_test {
         let inp = [
             Some(1),
             None,
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(2),
+            Some(3),
+            Some(4),
+            Some(5),
             None,
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(6),
+            Some(7),
+            Some(8),
+            Some(9),
             None,
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(10),
+            Some(11),
+            Some(12),
+            Some(13),
             None,
-            Some(1),
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(14),
+            Some(15),
+            Some(16),
+            Some(17),
             None,
-            Some(1),
-            Some(1),
-            Some(1),
+            Some(18),
+            Some(19),
+            Some(20),
         ];
         assert_eq!(is_win_by_col(&inp), true);
     }
