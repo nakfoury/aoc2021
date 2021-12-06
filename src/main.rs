@@ -16,22 +16,28 @@ fn main() {
     println!("Day4 Part1: {:?}", day4::part_1(get_input(4)));
     println!("Day4 Part2: {:?}", day4::part_2(get_input(4)));
     println!("Day5 Part1: {:?}", day5::part_1(get_input(5)));
-    // println!("Day5 Part2: {:?}", day5::part_2(get_input(5)));
+    println!("Day5 Part2: {:?}", day5::part_2(get_input(5)));
+    println!("Day6 Part1: {:?}", day6::part_1(get_input(6)));
+    println!("Day6 Part2: {:?}", day6::part_2(get_input(6)));
 }
 
 fn get_input(day: i32) -> io::BufReader<File> {
     let p = format!("input/day{}.txt", day);
     let path = Path::new(&p);
 
+    if !path.exists() {
+        download_input(day).unwrap();
+    }
+
     let file: File = match File::open(&path) {
-        Err(_) => download_input(day).unwrap(),
         Ok(f) => f,
+        Err(e) => panic!("Failed to open file: {:?}", e),
     };
 
     io::BufReader::new(file)
 }
 
-fn download_input(day: i32) -> Result<File, reqwest::Error> {
+fn download_input(day: i32) -> Result<(), reqwest::Error> {
     println!("Making web request...");
     let client = reqwest::blocking::Client::new();
 
@@ -51,7 +57,7 @@ fn download_input(day: i32) -> Result<File, reqwest::Error> {
         Ok(res) => {
             let mut f = File::create(Path::new(&format!("input/day{}.txt", day))).unwrap();
             f.write_all(res.text().unwrap().as_bytes()).unwrap();
-            Ok(f)
+            Ok(())
         }
         Err(error) => Err(error),
     }
