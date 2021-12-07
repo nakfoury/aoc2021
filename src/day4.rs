@@ -39,7 +39,7 @@ fn is_win_by_col(b: &Board) -> bool {
 }
 
 fn score_board(b: &Board) -> i32 {
-    b.into_iter()
+    b.iter()
         .filter_map(|x| *x)
         .collect::<Vec<i32>>()
         .iter()
@@ -53,7 +53,7 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
         .next()
         .unwrap()
         .unwrap()
-        .split(",")
+        .split(',')
         .map(|n| n.parse().unwrap())
         .collect::<Vec<i32>>();
 
@@ -74,11 +74,9 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
     }
 
     for num in bingo_numbers {
-        for mut board in &mut bingo_boards {
-            if mark_number(&mut board, num) {
-                if is_win(&board) {
-                    return num * score_board(&board);
-                }
+        for board in &mut bingo_boards {
+            if mark_number(board, num) && is_win(board) {
+                return num * score_board(board);
             }
         }
     }
@@ -93,7 +91,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
         .next()
         .unwrap()
         .unwrap()
-        .split(",")
+        .split(',')
         .map(|n| n.parse().unwrap())
         .collect::<Vec<i32>>();
 
@@ -117,11 +115,9 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 
     for mut board in bingo_boards {
         for (i, num) in bingo_numbers.iter().enumerate() {
-            if mark_number(&mut board, *num) {
-                if is_win(&board) {
-                    score_moves_tuple_list.push((i, num * score_board(&board)));
-                    break;
-                }
+            if mark_number(&mut board, *num) && is_win(&board) {
+                score_moves_tuple_list.push((i, num * score_board(&board)));
+                break;
             }
         }
     }

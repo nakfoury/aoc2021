@@ -18,7 +18,7 @@ fn main() {
     println!("Day5 Part1: {:?}", day5::part_1(get_input(5)));
     println!("Day5 Part2: {:?}", day5::part_2(get_input(5)));
     println!("Day6 Part1: {:?}", day6::part_1(get_input(6)));
-    println!("Day6 Part2: {:?}", day6::part_2(get_input(6)));
+    // println!("Day6 Part2: {:?}", day6::part_2(get_input(6)));
 }
 
 fn get_input(day: i32) -> io::BufReader<File> {

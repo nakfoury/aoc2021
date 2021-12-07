@@ -29,8 +29,8 @@ fn points_in_line(ln: &Line) -> Vec<Point> {
 
     let mut x = vec![ln.0 .0, ln.1 .0];
     let mut y = vec![ln.0 .1, ln.1 .1];
-    x.sort();
-    y.sort();
+    x.sort_unstable();
+    y.sort_unstable();
 
     for x in x[0]..x[1] + 1 {
         for y in y[0]..y[1] + 1 {
@@ -76,7 +76,7 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
         let ln: Line = line
             .split(" -> ")
             .map(|p| {
-                p.split(",")
+                p.split(',')
                     .map(str::parse)
                     .map(Result::unwrap)
                     .collect::<Point>()
@@ -108,7 +108,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
         let ln: Line = line
             .split(" -> ")
             .map(|p| {
-                p.split(",")
+                p.split(',')
                     .map(str::parse)
                     .map(Result::unwrap)
                     .collect::<Point>()
