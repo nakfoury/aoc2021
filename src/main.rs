@@ -6,23 +6,6 @@ use std::{
 
 use aoc2021::*;
 
-fn main() {
-    println!("Day1 Part1: {:?}", day1::part_1(get_input(1)));
-    println!("Day1 Part2: {:?}", day1::part_2(get_input(1)));
-    println!("Day2 Part1: {:?}", day2::part_1(get_input(2)));
-    println!("Day2 Part2: {:?}", day2::part_2(get_input(2)));
-    println!("Day3 Part1: {:?}", day3::part_1(get_input(3)));
-    println!("Day3 Part2: {:?}", day3::part_2(get_input(3)));
-    println!("Day4 Part1: {:?}", day4::part_1(get_input(4)));
-    println!("Day4 Part2: {:?}", day4::part_2(get_input(4)));
-    println!("Day5 Part1: {:?}", day5::part_1(get_input(5)));
-    println!("Day5 Part2: {:?}", day5::part_2(get_input(5)));
-    println!("Day6 Part1: {:?}", day6::part_1(get_input(6)));
-    println!("Day6 Part2: {:?}", day6::part_2(get_input(6)));
-    println!("Day7 Part1: {:?}", day7::part_1(get_input(7)));
-    println!("Day7 Part2: {:?}", day7::part_2(get_input(7)));
-}
-
 fn get_input(day: i32) -> io::BufReader<File> {
     let p = format!("input/day{}.txt", day);
     let path = Path::new(&p);
@@ -63,4 +46,27 @@ fn download_input(day: i32) -> Result<(), reqwest::Error> {
         }
         Err(error) => Err(error),
     }
+}
+
+fn main() {
+    println!("Day1 Part1: {:?}", day1::part_1(get_input(1)));
+    println!("Day1 Part2: {:?}", day1::part_2(get_input(1)));
+    println!("Day2 Part1: {:?}", day2::part_1(get_input(2)));
+    println!("Day2 Part2: {:?}", day2::part_2(get_input(2)));
+    println!("Day3 Part1: {:?}", day3::part_1(get_input(3)));
+    println!("Day3 Part2: {:?}", day3::part_2(get_input(3)));
+    println!("Day4 Part1: {:?}", day4::part_1(get_input(4)));
+    println!("Day4 Part2: {:?}", day4::part_2(get_input(4)));
+    println!("Day5 Part1: {:?}", day5::part_1(get_input(5)));
+    println!("Day5 Part2: {:?}", day5::part_2(get_input(5)));
+    println!("Day6 Part1: {:?}", day6::part_1(get_input(6)));
+    println!("Day6 Part2: {:?}", day6::part_2(get_input(6)));
+    println!("Day7 Part1: {:?}", day7::part_1(get_input(7)));
+    println!("Day7 Part2: {:?}", day7::part_2(get_input(7)));
+    println!("Day8 Part1: {:?}", day8::part_1(get_input(8)));
+    println!("Day8 Part2: {:?}", day8::part_2(get_input(8)));
+    println!("Day9 Part1: {:?}", day9::part_1(get_input(9)));
+    println!("Day9 Part2: {:?}", day9::part_2(get_input(9)));
+    println!("Day10 Part1: {:?}", day10::part_1(get_input(10)));
+    println!("Day10 Part2: {:?}", day10::part_2(get_input(10)));
 }
