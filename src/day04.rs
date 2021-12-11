@@ -128,7 +128,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 
 #[cfg(test)]
 mod test {
-    use crate::day4::{is_win_by_col, is_win_by_row, part_1, part_2, score_board};
+    use crate::day04::{is_win_by_col, is_win_by_row, part_1, part_2, score_board};
     use std::io::BufReader;
     use test::Bencher;
 

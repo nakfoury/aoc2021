@@ -140,7 +140,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 
 #[cfg(test)]
 mod test {
-    use crate::day5::{
+    use crate::day05::{
         is_diagonal, is_horizontal_or_vertical, part_1, part_2, points_in_diagonal_line,
         points_in_line, Line, Point,
     };

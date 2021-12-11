@@ -53,7 +53,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
 
 #[cfg(test)]
 mod test {
-    use crate::day7::{part_1, part_2};
+    use crate::day07::{part_1, part_2};
     use std::io::BufReader;
     use test::Bencher;
 

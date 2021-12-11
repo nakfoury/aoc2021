@@ -52,7 +52,7 @@ pub fn part_2<R: Read>(inp: BufReader<R>) -> i64 {
 
 #[cfg(test)]
 mod test {
-    use crate::day6::{count_children, part_1, part_2};
+    use crate::day06::{count_children, part_1, part_2};
     use std::io::BufReader;
     use test::Bencher;
 

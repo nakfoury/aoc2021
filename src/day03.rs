@@ -81,7 +81,7 @@ fn bin_str_to_dec(s: String) -> i32 {
 
 #[cfg(test)]
 mod unit_test {
-    use crate::day3::{bin_str_to_dec, part_1, part_2};
+    use crate::day03::{bin_str_to_dec, part_1, part_2};
     use std::io::BufReader;
     use test::Bencher;
 
