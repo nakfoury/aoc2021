@@ -1,7 +1,7 @@
 /* --- Day 8: Seven Segment Search --- */
 
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashMap,
     io::{BufRead, BufReader, Read},
 };
 
@@ -74,8 +74,6 @@ fn deduce_config(inp: String) -> WireConfig {
 }
 
 fn decode_value(inp: String, config: WireConfig) -> i32 {
-    let mut total = 0;
-
     let reference: HashMap<String, &str> = HashMap::from([
         (String::from("cf"), "1"),
         (String::from("acdeg"), "2"),
@@ -142,16 +140,7 @@ mod test {
     use std::io::BufReader;
     use test::Bencher;
 
-    use super::deduce_config;
-
     const INP: &[u8] = include_str!("../test/day8.txt").as_bytes();
-
-    #[test]
-    fn test_deduce_config() {
-        let actual = deduce_config(String::from(
-            "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab ",
-        ));
-    }
 
     #[test]
     fn test_part_1() {

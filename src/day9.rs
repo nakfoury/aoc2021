@@ -1,7 +1,5 @@
 use std::io::{BufRead, BufReader, Read};
 
-use std::any;
-
 /* --- Day 9: Smoke Basin --- */
 
 // type LavaMap = Vec<Vec<u8>>;
@@ -70,7 +68,7 @@ pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
     risk_sum
 }
 
-pub fn part_2<R: Read>(inp: BufReader<R>) -> i32 {
+pub fn part_2<R: Read>(_inp: BufReader<R>) -> i32 {
     0
 }
 
