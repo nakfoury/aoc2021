@@ -1,4 +1,5 @@
 #![feature(test)]
+#![feature(int_abs_diff)]
 extern crate test;
 
 pub mod day01;
