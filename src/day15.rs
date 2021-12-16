@@ -1,9 +1,6 @@
 /*  */
 
-use std::{
-    collections::HashMap,
-    io::{BufRead, BufReader, Read},
-};
+use std::io::{BufRead, BufReader, Read};
 
 pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
     0

@@ -3,10 +3,9 @@
 use std::{
     collections::HashMap,
     io::{BufRead, BufReader, Read},
-    slice::SliceIndex,
 };
 
-use itertools::{concat, Itertools};
+use itertools::Itertools;
 
 #[derive(Debug)]
 struct CaveSystem(HashMap<String, Vec<String>>);

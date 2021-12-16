@@ -1,11 +1,8 @@
 /* --- Day 13: Transparent Origami --- */
 
-use std::{
-    io::{BufRead, BufReader, Read},
-    time::Instant,
-};
+use std::io::{BufRead, BufReader, Read};
 
-use itertools::{fold, Itertools};
+use itertools::Itertools;
 
 type Point = (u32, u32);
 type Instruction = (bool, u32);
@@ -37,7 +34,7 @@ impl<R: Read> From<BufReader<R>> for TransparentPaper {
             })
             .collect_vec();
 
-        let mut instructions: Vec<Instruction> = inp
+        let instructions: Vec<Instruction> = inp
             .into_iter()
             .filter(|l| l.contains("="))
             .map(|s| {
@@ -92,8 +89,6 @@ impl TransparentPaper {
         }
     }
 }
-
-impl TransparentPaper {}
 
 pub fn part_1<R: Read>(inp: BufReader<R>) -> i32 {
     let mut paper = TransparentPaper::from(inp);
